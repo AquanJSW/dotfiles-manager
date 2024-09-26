@@ -1,5 +1,7 @@
 # dotfiles-manager
 
+[中文](README-zh-hans.md)
+
 This is a simple dotfiles manager that I use to manage my dotfiles (configuration files) across multiple devices,
 this idea is inspired by [agarrharr/settings](https://github.com/agarrharr/settings)
 

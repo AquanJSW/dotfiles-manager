@@ -84,6 +84,7 @@ commands:
 > By default, the `sync HOST` command will need diff tool to sync with
 > confirmations, currently supported diff tools are `nvim` and `VSCode`.
 > You can also using `-f` to force sync without confirmations.
+
 **For the following use, you may want to sync local to repo, simply run:**
 
 ```bash

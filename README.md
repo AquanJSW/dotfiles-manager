@@ -1,4 +1,4 @@
-# dotfiles Manager
+# dotfiles-manager
 
 This is a simple dotfiles manager that I use to manage my dotfiles (configuration files) across multiple devices,
 this idea is inspired by [agarrharr/settings](https://github.com/agarrharr/settings)
@@ -56,22 +56,7 @@ commands:
     # Push to the remote repository
     ```
 
-    > [!NOTE]
-    > The *update* functionalities like *update* and *delete*, due to their low
-    > frequency of use, are not intended to be implemented.
-    > If you want to update or delete an entity, you can do it manually by using
-    > other utils like `sqlite3`, `python -m sqlite3`, *DB Browser for SQLite*, etc.
-
 1. Then on another device, register it too:
-
-    > [!NOTE]
-    > You need to manually create an empty dotfile if you don't have the
-    > configuration file yet to register the path.
-
-    > [!NOTE]
-    > By default, the `sync HOST` command will need diff tool to sync with
-    > confirmations, currently supported diff tools are `nvim` and `VSCode`.
-    > You can also using `-f` to force sync without confirmations.
 
     ```pwsh
     # Clone your updated repository
@@ -84,7 +69,21 @@ commands:
     # Sync with the first host
     python3 ./manage.py sync A
     ```
+    
+> [!TIP]
+> The *update* functionalities like *update* and *delete*, due to their low
+> frequency of use, are not intended to be implemented.
+> If you want to update or delete an entity, you can do it manually by using
+> other utils like `sqlite3`, `python -m sqlite3`, *DB Browser for SQLite*, etc.
 
+> [!NOTE]
+> You need to manually create an empty dotfile if you don't have the
+> configuration file yet to register the path.
+
+> [!NOTE]
+> By default, the `sync HOST` command will need diff tool to sync with
+> confirmations, currently supported diff tools are `nvim` and `VSCode`.
+> You can also using `-f` to force sync without confirmations.
 **For the following use, you may want to sync local to repo, simply run:**
 
 ```bash

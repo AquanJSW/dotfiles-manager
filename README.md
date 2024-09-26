@@ -10,8 +10,6 @@ Four tables are used:
 - `dotfiles`: Store configuration infos, note that **this table doesn't store the actual paths**, as there may be multiple files for one configuration.
 - `paths`: Store the actual paths of each configuration.
 
-## Usage
-
 ```plain
 $ ./manage.py -h
 usage: manage.py [-h] {register,r,query,q,sync,s} ...
@@ -29,14 +27,26 @@ commands:
     sync (s)            Sync dotfiles across hosts
 ```
 
+## Usage
+
+### Install
+
+```bash
+# WARNING: You should *fork* this repository first
+# git clone --depth=1 https://github.com/AquanJSW/dotfiles-manager ~/.dotfiles
+cd ~/.dotfiles
+python3 -m venv .venv
+pip install -r requirements.txt
+. .venv/bin/activate
+```
+
+### Example
+
 **For the very first use, a typical workflow would be:**
 
 1. On the first device
 
     ```bash
-    # WARNING: You should *fork* this repository first
-    # git clone --depth=1 https://github.com/AquanJSW/dotfiles-manager ~/.dotfiles
-    cd ~/.dotfiles
     # Add host
     HOSTNAME=A
     python3 ./manage.py register host "$HOSTNAME"

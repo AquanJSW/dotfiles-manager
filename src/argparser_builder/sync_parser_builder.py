@@ -24,6 +24,7 @@ class SyncParserBuilder:
 
 
 def sync_self(session: Session):
+    print(f'Sync self: {helper.get_host_id()} -> repo/{helper.get_host_id()}')
     path_instances = session.exec(
         select(Path).where(Path.host_id == helper.get_host_id())
     ).all()
@@ -35,11 +36,11 @@ def sync_self(session: Session):
             helper.get_host_id(),
             path_instance.app_id,
             path_instance.dotfile_name,
-            path_instance.path_name,
+            path_instance.name,
         )
         # Update file
         shutil.copyfile(src_path, dst_path)
-        print(f'{src_path} -> {dst_path}')
+        print(f'  {src_path} -> {dst_path}')
         # Update datetime
         path_instance.datetime = helper.get_datetime(src_path)
         session.add(path_instance)
@@ -51,6 +52,7 @@ def sync_host(session: Session, host_id: str, force: bool):
     if host_id != helper.get_host_id():
         sync_self(session)
 
+    print(f'Sync host: repo/{host_id} -> {helper.get_host_id()}')
     path_instances_host = session.exec(
         select(Path).where(Path.host_id == host_id)
     ).all()
@@ -78,7 +80,7 @@ def sync_host(session: Session, host_id: str, force: bool):
             host_id,
             path_instance.app_id,
             path_instance.dotfile_name,
-            path_instance.path_name,
+            path_instance.name,
         )
         # Update file
         shutil.copyfile(src_path, dst_path)
@@ -88,11 +90,11 @@ def sync_host(session: Session, host_id: str, force: bool):
                     helper.get_host_id(),
                     path_instance.app_id,
                     path_instance.dotfile_name,
-                    path_instance.path_name,
+                    path_instance.name,
                 ),
                 dst_path,
             )
-        print(f'{src_path} -> {dst_path}')
+        print(f'  {src_path} -> {dst_path}')
 
 
 def diff_edit(file1, file2):

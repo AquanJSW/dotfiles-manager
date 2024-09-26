@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
     ```bash
     # Add host
-    HOSTNAME=A
+    HOSTNAME=$(hostname)
     python3 ./manage.py register host "$HOSTNAME"
     # Add apps
     python3 ./manage.py register app wezterm
@@ -73,7 +73,7 @@ pip install -r requirements.txt
     ```pwsh
     # Clone your forked repository
     # Add host
-    $HOSTNAME=B
+    $HOSTNAME=$env:COMPUTERNAME
     python3 ./manage.py register host "$HOSTNAME"
     # Add paths
     python3 ./manage.py register path wezterm main main ~/.wezterm.lua
@@ -81,7 +81,7 @@ pip install -r requirements.txt
     # Sync with the first host
     python3 ./manage.py sync A
     ```
-    
+
 > [!TIP]
 > The *update* functionalities like *update* and *delete*, due to their low
 > frequency of use, are not intended to be implemented.

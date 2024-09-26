@@ -63,7 +63,7 @@ commands:
     ```pwsh
     # Clone your forked repository
     # Add host
-    HOSTNAME=B
+    $HOSTNAME=B
     python3 ./manage.py register host "$HOSTNAME"
     # Add paths
     python3 ./manage.py register path wezterm main main ~/.wezterm.lua

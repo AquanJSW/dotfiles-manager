@@ -60,6 +60,7 @@ class Path(SQLModel, table=True):
 
 
 # For testing
+# This won't break the exist database
 if __name__ == '__main__':
     from sqlmodel import create_engine
 

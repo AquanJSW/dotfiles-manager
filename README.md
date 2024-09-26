@@ -102,3 +102,12 @@ python3 ./manage.py sync
 > By default, the **`sync HOST`** command will **need diff tool to sync with
 > confirmations**, **currently supported diff tools are `nvim` and `VSCode`**.
 > You can also using `-f` to force sync without confirmations.
+
+## Known Issues
+
+- There may be some foreign key constraints are not working. For my use case,
+  I've found that the `dotfile_name` constraint in `Path` table is not working.
+  The models in `model.py` are possibly not the reason, because the
+  *DB Browser for SQLite* can find the foreign key constraints and reports the
+  errors.
+  You may want to use other utils to modify the database if you encounter this.

@@ -82,9 +82,15 @@ pip install -r requirements.txt
   python3 ./manage.py sync A
   ```
 
+**For the following use, you may want to sync local to repo, simply run:**
+
+```bash
+python3 ./manage.py sync
+```
+
 > [!TIP]
-> The *update* functionalities like *update* and *delete*, due to their low
-> frequency of use, are not intended to be implemented.
+> **The *update* functionalities like *update* and *delete***, due to their low
+> frequency of use, **are not intended to be implemented**.
 > If you want to update or delete an entity, you can do it manually by using
 > other utils like `sqlite3`, `python -m sqlite3`, *DB Browser for SQLite*, etc.
 
@@ -93,12 +99,6 @@ pip install -r requirements.txt
 > configuration file yet to register the path.
 
 > [!NOTE]
-> By default, the `sync HOST` command will need diff tool to sync with
-> confirmations, currently supported diff tools are `nvim` and `VSCode`.
+> By default, the **`sync HOST`** command will **need diff tool to sync with
+> confirmations**, **currently supported diff tools are `nvim` and `VSCode`**.
 > You can also using `-f` to force sync without confirmations.
-
-**For the following use, you may want to sync local to repo, simply run:**
-
-```bash
-python3 ./manage.py sync
-```

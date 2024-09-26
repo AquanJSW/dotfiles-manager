@@ -36,12 +36,13 @@ Depending on whether the `host` argument is provided or not, the sync operation
 will be completely different:
 
 - If `host` is not provided, it will update current host's dotfiles to repo.
-  We call this operation *self-sync* for later reference.
+  We call this operation *sync-self* for later reference.
 - If `host` is provided, it will update current host's dotfiles with the 
-  provided host's ones. Note that *self-sync* will be performed first before
-  this operation.
-  But if the provided host is the same as the current host, *self-sync* will
-  be skipped. This operation is called *self-restore*.
+  provided host's ones (*sync-host*). Note that *sync-self* will be performed
+  first before this operation. Still note that after *sync-host*, the dotfiles
+  in this repo may be **outdated** than your current dotfiles.
+  But if the provided host is the same as the current host, *sync-self* will
+  be skipped. This operation is called *restore-self*.
                 ''',
                 formatter_class=argparse.RawTextHelpFormatter,
             ),

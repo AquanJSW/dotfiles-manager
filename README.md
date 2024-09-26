@@ -34,7 +34,9 @@ commands:
 1. On the first device
 
     ```bash
-    # Fork this repository and then clone it
+    # WARNING: You should *fork* this repository first
+    # git clone --depth=1 https://github.com/AquanJSW/dotfiles-manager ~/.dotfiles
+    cd ~/.dotfiles
     # Add host
     HOSTNAME=A
     python3 ./manage.py register host "$HOSTNAME"
@@ -53,13 +55,13 @@ commands:
     python3 ./manage.py register path bash rc aliases ~/.bash_aliases
     # You can check the database anytime
     python3 ./manage.py query
-    # Push to the remote repository
+    # Push to your forked repository
     ```
 
 1. Then on another device, register it too:
 
     ```pwsh
-    # Clone your updated repository
+    # Clone your forked repository
     # Add host
     HOSTNAME=B
     python3 ./manage.py register host "$HOSTNAME"

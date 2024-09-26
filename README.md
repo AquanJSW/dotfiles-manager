@@ -46,41 +46,41 @@ pip install -r requirements.txt
 
 1. On the first device
 
-    ```bash
-    # Add host
-    HOSTNAME=$(hostname)
-    python3 ./manage.py register host "$HOSTNAME"
-    # Add apps
-    python3 ./manage.py register app wezterm
-    python3 ./manage.py register app nvim
-    python3 ./manage.py register app bash
-    # Add dotfiles
-    python3 ./manage.py register dotfile wezterm main
-    python3 ./manage.py register dotfile nvim init
-    python3 ./manage.py register dotfile bash rc
-    # Add paths
-    python3 ./manage.py register path wezterm main main ~/.wezterm.lua
-    python3 ./manage.py register path nvim init main ~/.config/nvim/init.lua
-    python3 ./manage.py register path bash rc main ~/.bashrc
-    python3 ./manage.py register path bash rc aliases ~/.bash_aliases
-    # You can check the database anytime
-    python3 ./manage.py query
-    # Push to your forked repository
-    ```
+  ```bash
+  # Add host
+  HOSTNAME=$(hostname)
+  python3 ./manage.py register host "$HOSTNAME"
+  # Add apps
+  python3 ./manage.py register app wezterm
+  python3 ./manage.py register app nvim
+  python3 ./manage.py register app bash
+  # Add dotfiles
+  python3 ./manage.py register dotfile wezterm main
+  python3 ./manage.py register dotfile nvim init
+  python3 ./manage.py register dotfile bash rc
+  # Add paths
+  python3 ./manage.py register path wezterm main main ~/.wezterm.lua
+  python3 ./manage.py register path nvim init main ~/.config/nvim/init.lua
+  python3 ./manage.py register path bash rc main ~/.bashrc
+  python3 ./manage.py register path bash rc aliases ~/.bash_aliases
+  # You can check the database anytime
+  python3 ./manage.py query
+  # Push to your forked repository
+  ```
 
 1. Then on another device, register it too:
 
-    ```pwsh
-    # Clone your forked repository
-    # Add host
-    $HOSTNAME=$env:COMPUTERNAME
-    python3 ./manage.py register host "$HOSTNAME"
-    # Add paths
-    python3 ./manage.py register path wezterm main main ~/.wezterm.lua
-    python3 ./manage.py register path nvim init main $env:LOCALAPPDATA/nvim/init.lua
-    # Sync with the first host
-    python3 ./manage.py sync A
-    ```
+  ```pwsh
+  # Clone your forked repository
+  # Add host
+  $HOSTNAME=$env:COMPUTERNAME
+  python3 ./manage.py register host "$HOSTNAME"
+  # Add paths
+  python3 ./manage.py register path wezterm main main ~/.wezterm.lua
+  python3 ./manage.py register path nvim init main $env:LOCALAPPDATA/nvim/init.lua
+  # Sync with the first host
+  python3 ./manage.py sync A
+  ```
 
 > [!TIP]
 > The *update* functionalities like *update* and *delete*, due to their low

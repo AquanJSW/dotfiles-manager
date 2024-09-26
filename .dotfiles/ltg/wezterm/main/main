@@ -1,0 +1,33 @@
+local wezterm = require 'wezterm'
+
+local config = wezterm.config_builder()
+
+local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
+
+if is_windows then
+    config.default_prog = { "pwsh.exe" }
+end
+
+config.front_end = "WebGpu"
+config.color_scheme = "Gruvbox Light"
+
+-- Keybindings
+config.keys = {
+    {
+	key = "w",
+	mods = "CTRL|SHIFT",
+	action = wezterm.action{CloseCurrentPane={confirm=true}},
+    },
+    {
+	key = "o",
+	mods = "CTRL|SHIFT",
+	action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain"},
+    },
+    {
+	key = "e",
+	mods = "CTRL|SHIFT",
+	action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain"},
+    },
+}
+
+return config

@@ -129,7 +129,7 @@ export EDITOR=nvim
 shopt -s direxpand
 
 # Proxy
-PORT=7897
+PORT=7890
 proxy unset
 nc -z localhost "$PORT" >&/dev/null && proxy set "$PORT"
 

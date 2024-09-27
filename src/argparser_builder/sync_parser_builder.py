@@ -11,16 +11,18 @@ from . import helper
 
 class SyncParserBuilder:
     def __init__(self, parser: argparse.ArgumentParser) -> None:
-        parser.add_argument('host', nargs='?', help='The source host ID')
+        parser.add_argument(
+            'filter', nargs='*', help='The source filter: [HOST [APP [DOTFILE [NAME]]]]'
+        )
         parser.add_argument('-f', '--force', action='store_true', help='Skip diffing')
         parser.set_defaults(func=self._resolve, verbose=False)
 
     def _resolve(self, engine, args: argparse.Namespace):
         with Session(engine) as session:
-            if not args.host:
+            if not args.filter:
                 sync_self(session)
                 return
-            sync_host(session, args.host, args.force)
+            sync_host(session, args.filter, args.force)
 
 
 def sync_self(session: Session):
@@ -48,14 +50,32 @@ def sync_self(session: Session):
         session.refresh(path_instance)
 
 
-def sync_host(session: Session, host_id: str, force: bool):
+def sync_host(session: Session, filter: list[str], force: bool):
+    host_id = filter[0]
     if host_id != helper.get_host_id():
         sync_self(session)
 
     print(f'Sync host: repo/{host_id} -> {helper.get_host_id()}')
-    path_instances_host = session.exec(
-        select(Path).where(Path.host_id == host_id)
-    ).all()
+
+    match len(filter):
+        case 1:
+            wheres = [Path.host_id == host_id]
+        case 2:
+            wheres = [Path.host_id == host_id, Path.app_id == filter[1]]
+        case 3:
+            wheres = [
+                Path.host_id == host_id,
+                Path.app_id == filter[1],
+                Path.dotfile_name == filter[2],
+            ]
+        case 4:
+            wheres = [
+                Path.host_id == host_id,
+                Path.app_id == filter[1],
+                Path.dotfile_name == filter[2],
+                Path.name == filter[3],
+            ]
+    path_instances_host = session.exec(select(Path).where(*wheres)).all()
 
     def get_dst_path(app_id, dotfile_name, path_name):
         try:

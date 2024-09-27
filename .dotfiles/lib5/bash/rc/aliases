@@ -1,6 +1,7 @@
 #!/bin/bash
 # Containing aliases and functions
 alias refreshenv='. ~/.bashrc'
+alias df='df -xvfat -xdevtmpfs -xtmpfs -xsquashfs -T'
 
 # Conditional append to PATH
 # Usage: append_paths (path1 path2 ...)

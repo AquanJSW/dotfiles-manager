@@ -32,8 +32,8 @@ class RootParserBuilder:
                 aliases=['s'],
                 description='''Sync dotfiles across hosts.
 
-Depending on whether the `host` argument is provided or not, the sync operation 
-will be completely different:
+Depending on whether the `host` argument (the first element of `filter`) is
+provided or not, the sync operation will be completely different:
 
 - If `host` is not provided, it will update current host's dotfiles to repo.
   We call this operation *sync-self* for later reference.

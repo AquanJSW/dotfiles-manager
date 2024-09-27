@@ -1,0 +1,32 @@
+#!/bin/bash
+# Containing aliases and functions
+alias refreshenv='. ~/.bashrc'
+
+# Conditional append to PATH
+# Usage: append_paths (path1 path2 ...)
+append_paths() {
+    for path in "$@"; do
+        if [ -f "$path" ] && ! [[ $PATH =~ $path ]]; then
+            export PATH="$PATH:$path"
+        fi
+    done
+}
+
+# Proxy set and unset
+# Usage: proxy set PORT
+#        proxy unset
+proxy() {
+    case "$1" in
+    set)
+        export HTTP_PROXY="http://localhost:$2"
+        export HTTPS_PROXY="http://localhost:$2"
+        ;;
+    unset)
+        unset HTTP_PROXY
+        unset HTTPS_PROXY
+        ;;
+    *)
+        echo "Usage: proxy set PORT | proxy unset"
+        ;;
+    esac
+}

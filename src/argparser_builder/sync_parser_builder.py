@@ -57,23 +57,26 @@ def sync_host(session: Session, host_id: str, force: bool):
         select(Path).where(Path.host_id == host_id)
     ).all()
 
-    def get_dst_path(app_id, dotfile_name):
+    def get_dst_path(app_id, dotfile_name, path_name):
         try:
             path_instance = session.exec(
                 select(Path).where(
                     Path.host_id == helper.get_host_id(),
                     Path.app_id == app_id,
                     Path.dotfile_name == dotfile_name,
+                    Path.name == path_name,
                 )
             ).one()
             return path_instance.path
-        except:
+        except Exception as e:
             return ''
 
     for path_instance in path_instances_host:
         if path_instance.private:
             continue
-        dst_path = get_dst_path(path_instance.app_id, path_instance.dotfile_name)
+        dst_path = get_dst_path(
+            path_instance.app_id, path_instance.dotfile_name, path_instance.name
+        )
         if not dst_path:
             continue
         src_path = helper.get_dotfile_path_in_repo(

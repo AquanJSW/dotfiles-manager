@@ -31,3 +31,9 @@ proxy() {
         ;;
     esac
 }
+
+update-mihomo-config() {
+    sudo systemctl stop mihomo
+    sudo curl -sL "$MIHOMO_CONFIG_URL" -o /etc/mihomo/config.yaml
+    sudo systemctl start mihomo
+}

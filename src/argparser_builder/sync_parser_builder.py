@@ -125,4 +125,4 @@ def diff_edit(file1, file2):
         os.system(f'code -w --diff {file1} {file2}')
     else:
         # neovim
-        os.system(f'vim -d {file1} {file2}')
+        os.system(f'nvim -d {file1} {file2}')
